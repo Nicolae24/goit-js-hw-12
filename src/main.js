@@ -35,6 +35,7 @@ async function onFormSubmit(event) {
             message: 'Please enter a search term!',
             position: 'topRight',
         });
+
         return;
     }
 
@@ -50,6 +51,7 @@ async function onFormSubmit(event) {
                 message: 'Sorry, there are no images matching your search query. Please try again!',
                 position: 'topRight',
             });
+            hideLoadMoreButton(loadMoreBtn);
             return;
         }
 

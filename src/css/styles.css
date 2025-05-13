@@ -133,7 +133,7 @@ h3 {
 }
 
 /* Кнопка "Load More" */
-#load-more-button {
+.load-button {
   display: block;
   background-color: #ff6f61;
   color: white;
@@ -151,24 +151,19 @@ h3 {
   margin-right: auto;
 }
 
-#load-more-button:hover {
+.load-button:hover {
   background-color: #ff4d38;
   transform: scale(1.1);
 }
 
-#load-more-button:active {
+.load-button:active {
   background-color: #ff3a2d;
   transform: scale(1);
 }
 
 /* Лоадер */
 .js-loader {
-  display: none;
   text-align: center;
-}
-
-.js-loader.hidden {
-  display: none;
 }
 
 /* Анімація при загрузці */
@@ -200,4 +195,8 @@ h3 {
 
 .icon:hover {
   color: #ff4d38;
+}
+
+.hidden {
+  display: none;
 }
