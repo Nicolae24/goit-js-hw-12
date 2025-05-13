@@ -27,15 +27,39 @@ import axios from 'axios';
 
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '50248807-4593db0d9cec2666d46b99efe';
+const PER_PAGE = 15;
 
-export async function getImagesByQuery(query, page = 1, perPage = 15) {
-    const url = `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(query)}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
+export async function getImagesByQuery(query, page = 1) {
+    const params = {
+        key: API_KEY,
+        q: query,
+        image_type: 'photo',
+        orientation: 'horizontal',
+        safesearch: true,
+        page,
+        per_page: PER_PAGE,
+    };
 
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+    try {
+        const response = await axios.get(BASE_URL, { params });
+        return response.data;
+    } catch (error) {
+        iziToast.error({
+            title: 'Error',
+            message: 'Oops! Failed to load images. Please try again later.',
+            position: 'topRight',
+        });
     }
-
-    return await response.json();
 }
+
+// export async function getImagesByQuery(query, page = 1, perPage = 15) {
+//     const url = `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(query)}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
+
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//         throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     return await response.json();
+// }
 

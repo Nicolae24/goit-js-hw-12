@@ -55,8 +55,12 @@ async function onFormSubmit(event) {
 
         createGallery(data.hits);
 
-        if (data.totalHits > page * perPage) {
+        const totalPages = Math.ceil(data.totalHits / perPage);
+        // Показуємо кнопку лише якщо є наступні сторінки
+        if (page < totalPages) {
             showLoadMoreButton(loadMoreBtn);
+        } else {
+            hideLoadMoreButton(loadMoreBtn);
         }
     } catch (error) {
         iziToast.error({
